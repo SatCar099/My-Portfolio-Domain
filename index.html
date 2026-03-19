@@ -1,267 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Satkar Khadka — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --accent:#6C63FF;
-    --dark:#0D0D14;
-    --card:#1A1A2E;
-    --card2:#1F1F33;
-    --muted:#8887A8;
-    --text:#E8E8F2;
-    --text2:#C5C4DC;
-    --border:rgba(108,99,255,0.18);
-    --glow:rgba(108,99,255,0.13);
-  }
-  html{scroll-behavior:smooth;}
-  body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.7;min-height:100vh;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satkar Khadka | Portfolio</title>
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:100;background:rgba(13,13,20,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);}
-  .nav-links{display:flex;gap:2rem;}
-  .nav-links a{color:var(--muted);font-size:0.85rem;text-decoration:none;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s;}
-  .nav-links a:hover{color:var(--text);}
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
 
-  /* HERO */
-  .hero{position:relative;overflow:hidden;padding:6rem 2rem 5rem;display:flex;flex-direction:column;align-items:center;text-align:center;}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(108,99,255,0.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(255,101,132,0.09) 0%,transparent 60%);}
-  .hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(108,99,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.06) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 0%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 0%,transparent 100%);}
-  .hero>*{position:relative;z-index:1;}
-
-  /* PHOTO */
-  .hero-photo-wrap{width:130px;height:130px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#6C63FF,#a78bfa,#FF6584);margin-bottom:1.75rem;box-shadow:0 8px 40px rgba(108,99,255,0.35);}
-  .hero-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block;border:3px solid var(--dark);}
-
-  .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(108,99,255,0.13);border:1px solid var(--border);border-radius:99px;padding:0.3rem 1rem;font-size:0.78rem;font-weight:500;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.5rem;}
-  .hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:block;animation:blink 2s ease-in-out infinite;}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-
-  .hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,4rem);line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem;}
-  .hero h1 span{background:linear-gradient(135deg,#6C63FF 0%,#a78bfa 50%,#FF6584 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .hero-sub{max-width:520px;color:var(--text2);font-size:1.05rem;font-weight:300;margin-bottom:2.5rem;line-height:1.8;}
-  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:3.5rem;}
-
-  .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;border-radius:99px;padding:0.75rem 1.75rem;font-size:0.9rem;font-weight:500;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(108,99,255,0.35);}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,0.45);}
-  .btn-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:99px;padding:0.75rem 1.75rem;font-size:0.9rem;font-weight:500;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
-  .btn-outline:hover{border-color:var(--accent);background:var(--glow);}
-
-  .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;}
-  .stat{display:flex;flex-direction:column;align-items:center;}
-  .stat-num{font-family:'Syne',sans-serif;font-weight:700;font-size:1.8rem;color:var(--text);line-height:1;}
-  .stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.25rem;letter-spacing:0.04em;}
-
-  /* SECTIONS */
-  section{padding:5rem 2rem;}
-  .section-inner{max-width:1000px;margin:0 auto;}
-  .section-label{font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
-  .section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem;letter-spacing:-0.01em;}
-  .section-desc{color:var(--text2);font-weight:300;max-width:520px;margin-bottom:3rem;}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 auto;max-width:1000px;}
-
-  /* SKILLS */
-  .skills-grid{display:flex;flex-wrap:wrap;gap:0.65rem;}
-  .skill-chip{display:inline-flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--border);border-radius:99px;padding:0.45rem 1rem;font-size:0.83rem;color:var(--text2);transition:border-color 0.2s,background 0.2s,color 0.2s;cursor:default;}
-  .skill-chip:hover{border-color:var(--accent);background:var(--glow);color:var(--text);}
-  .skill-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-  .skill-chip.design .dot{background:#a78bfa;}
-  .skill-chip.code .dot{background:#34d399;}
-  .skill-chip.soft .dot{background:#f97316;}
-
-  /* PROJECTS */
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
-  .project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;cursor:default;position:relative;overflow:hidden;}
-  .project-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(108,99,255,0.09),transparent);opacity:0;transition:opacity 0.3s;}
-  .project-card:hover{border-color:rgba(108,99,255,0.4);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.35);}
-  .project-card:hover::before{opacity:1;}
-  .project-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem;background:var(--card2);border:1px solid var(--border);}
-  .project-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:0.5rem;color:var(--text);}
-  .project-card p{font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;}
-  .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
-  .tag{font-size:0.72rem;font-weight:500;letter-spacing:0.04em;padding:0.2rem 0.7rem;border-radius:99px;background:rgba(108,99,255,0.12);color:#a78bfa;border:1px solid rgba(108,99,255,0.2);}
-  .tag.green{background:rgba(52,211,153,0.1);color:#34d399;border-color:rgba(52,211,153,0.2);}
-  .tag.orange{background:rgba(249,115,22,0.1);color:#fb923c;border-color:rgba(249,115,22,0.2);}
-  .tag.pink{background:rgba(255,101,132,0.1);color:#FF6584;border-color:rgba(255,101,132,0.2);}
-
-  /* EDUCATION */
-  .edu-list{display:flex;flex-direction:column;gap:1.25rem;}
-  .edu-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;align-items:flex-start;gap:1.2rem;}
-  .edu-icon{width:42px;height:42px;border-radius:10px;background:rgba(108,99,255,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-  .edu-info h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text);margin-bottom:0.2rem;}
-  .edu-info .school{font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;}
-  .edu-meta{display:flex;gap:0.75rem;flex-wrap:wrap;}
-  .edu-badge{font-size:0.75rem;font-weight:500;padding:0.2rem 0.65rem;border-radius:99px;}
-  .gpa-badge{background:rgba(52,211,153,0.12);color:#34d399;border:1px solid rgba(52,211,153,0.22);}
-  .year-badge{background:rgba(108,99,255,0.1);color:#a78bfa;border:1px solid rgba(108,99,255,0.2);}
-
-  /* CONTACT */
-  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
-  .contact-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(108,99,255,0.12),transparent);}
-  .contact-card>*{position:relative;}
-  .contact-card h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,3vw,2rem);margin-bottom:0.75rem;}
-  .contact-card p{color:var(--text2);font-weight:300;margin-bottom:2rem;max-width:400px;margin-left:auto;margin-right:auto;}
-  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-  .contact-link{display:inline-flex;align-items:center;gap:0.5rem;background:var(--card2);border:1px solid var(--border);border-radius:99px;padding:0.6rem 1.25rem;color:var(--text2);font-size:0.85rem;text-decoration:none;transition:border-color 0.2s,color 0.2s,background 0.2s;}
-  .contact-link:hover{border-color:var(--accent);color:var(--text);background:var(--glow);}
-
-  footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem;}
-  footer span{color:var(--accent);}
-</style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<nav>
-  <div class="nav-logo">Satkar K.</div>
-  <div class="nav-links">
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-
-  <div class="hero-photo-wrap">
-    <img class="hero-photo" src="hilton.jpeg" alt="Satkar Khadka"/>
-  </div>
-
-  <div class="hero-tag">Open to opportunities</div>
-  <h1>Hi, I'm <span>Satkar Khadka</span></h1>
-  <p class="hero-sub">BSIT student &amp; UI/UX enthusiast crafting user-friendly digital experiences through thoughtful design and clean code.</p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn-primary">View My Work ↓</a>
-    <a href="#contact" class="btn-outline">Get In Touch</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">3.93</div><div class="stat-label">Current GPA</div></div>
-    <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years in IT</div></div>
-    <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Team Projects</div></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="skills">
-  <div class="section-inner">
-    <div class="section-label">What I bring</div>
-    <h2 class="section-title">Skills &amp; Tools</h2>
-    <p class="section-desc">A growing toolkit spanning design, development, and collaboration — built through coursework and hands-on projects.</p>
-    <div class="skills-grid">
-      <div class="skill-chip design"><span class="dot"></span>UI/UX Design</div>
-      <div class="skill-chip design"><span class="dot"></span>Figma</div>
-      <div class="skill-chip design"><span class="dot"></span>Web Design</div>
-      <div class="skill-chip design"><span class="dot"></span>Prototyping</div>
-      <div class="skill-chip code"><span class="dot"></span>HTML / CSS</div>
-      <div class="skill-chip code"><span class="dot"></span>Basic JavaScript</div>
-      <div class="skill-chip code"><span class="dot"></span>C</div>
-      <div class="skill-chip code"><span class="dot"></span>C++</div>
-      <div class="skill-chip soft"><span class="dot"></span>Problem Solving</div>
-      <div class="skill-chip soft"><span class="dot"></span>Teamwork</div>
-      <div class="skill-chip soft"><span class="dot"></span>Communication</div>
-      <div class="skill-chip soft"><span class="dot"></span>Collaboration</div>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Satkar K.</div>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
-  </div>
-</section>
+  </nav>
 
-<div class="divider"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="hilton.jpeg" alt="Satkar">
+    <h1>Satkar Khadka</h1>
+    <p>I am a BSIT student at King’s College specializing in Data Science, with a strong interest in UI/UX design and
+      web development. I enjoy creating clean, intuitive user experiences and solving real-world problems through
+      technology. With a strong academic record and hands-on project experience, I am constantly working to grow as a
+      developer and designer.</p>
 
-<section id="projects">
-  <div class="section-inner">
-    <div class="section-label">Work samples</div>
-    <h2 class="section-title">Academic Projects</h2>
-    <p class="section-desc">Collaborative projects developed during my BSIT program, focusing on usability, design principles, and teamwork.</p>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-icon">🎨</div>
-        <h3>UI Prototype — Mobile App</h3>
-        <p>Designed a full mobile app UI prototype in Figma following user-centered design principles, with consistent visual language and interactive flows.</p>
-        <div class="project-tags"><span class="tag">Figma</span><span class="tag">UI/UX</span><span class="tag">Prototyping</span></div>
+    <div class="buttons">
+      <a href="#projects" class="btn">View Work</a>
+      <a href="#contact" class="btn-outline">Contact</a>
+    </div>
+
+    <div class="stats">
+      <div>
+        <h3>3.93</h3><span>GPA</span>
       </div>
-      <div class="project-card">
-        <div class="project-icon">🌐</div>
-        <h3>Responsive Web Page</h3>
-        <p>Built a multi-page responsive website using semantic HTML and CSS, applying layout techniques and accessibility best practices.</p>
-        <div class="project-tags"><span class="tag green">HTML</span><span class="tag green">CSS</span><span class="tag green">Responsive</span></div>
+      <div>
+        <h3>2+</h3><span>Years Learning</span>
       </div>
-      <div class="project-card">
-        <div class="project-icon">🤝</div>
-        <h3>Team Academic Assignment</h3>
-        <p>Collaborated in a team to plan, design, and present a tech solution — handling documentation, design mockups, and peer coordination.</p>
-        <div class="project-tags"><span class="tag orange">Teamwork</span><span class="tag orange">Planning</span><span class="tag orange">Research</span></div>
-      </div>
-      <div class="project-card">
-        <div class="project-icon">⚙️</div>
-        <h3>C++ Console Application</h3>
-        <p>Developed a problem-solving console application in C++ as part of coursework, focusing on logic, data structures, and algorithmic thinking.</p>
-        <div class="project-tags"><span class="tag pink">C++</span><span class="tag pink">OOP</span><span class="tag pink">Logic</span></div>
+      <div>
+        <h3>4+</h3><span>Projects</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="desc">Tools and technologies I work with.</p>
 
-<section id="education">
-  <div class="section-inner">
-    <div class="section-label">Academic background</div>
-    <h2 class="section-title">Education</h2>
-    <p class="section-desc">Strong academic record across my IT studies and higher secondary education.</p>
-    <div class="edu-list">
-      <div class="edu-card">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-info">
-          <h3>Bachelor of Science in Information Technology (BSIT)</h3>
-          <div class="school">King's College · Affiliated to Westcliff University, California USA · Kathmandu, Nepal</div>
-          <div class="edu-meta">
-            <span class="edu-badge gpa-badge">GPA 3.93</span>
-            <span class="edu-badge year-badge">Feb 2023 – Present</span>
-          </div>
-        </div>
+    <div class="skills">
+      <span>UI/UX Design</span>
+      <span>Figma</span>
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>C</span>
+      <span>C++</span>
+      <span>Problem Solving</span>
+      <span>Teamwork</span>
+      <span>Python</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="desc">Academic and personal work.</p>
+
+    <div class="project">
+      <h3>MediConnect</h3>
+      <p>Healthcare-based project improving connection between patients and services through simple UI/UX design.</p>
+    </div>
+
+    <div class="project">
+      <h3>UI Prototype</h3>
+      <p>Designed mobile interfaces in Figma focusing on usability and clean design.</p>
+    </div>
+
+    <div class="project">
+      <h3>Responsive Website</h3>
+      <p>Built responsive web pages using HTML & CSS with proper layout techniques.</p>
+    </div>
+
+    <div class="project">
+      <h3>C++ Application</h3>
+      <p>Developed console-based application focusing on logic and problem solving.</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="edu">
+      <div>
+        <h3>BSIT</h3>
+        <p>King's College</p>
+        <span>GPA: 3.93 | 2023 – Present</span>
       </div>
-      <div class="edu-card">
-        <div class="edu-icon">📚</div>
-        <div class="edu-info">
-          <h3>Higher Secondary Education (+2 Science)</h3>
-          <div class="school">Molihss College · Lalitpur, Nepal</div>
-          <div class="edu-meta">
-            <span class="edu-badge gpa-badge">GPA 3.71</span>
-            <span class="edu-badge year-badge">2020 – 2022</span>
-          </div>
-        </div>
+
+      <div>
+        <h3>+2 Science</h3>
+        <p>Molihss College</p>
+        <span>GPA: 3.71 | 2020 – 2022</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for opportunities.</p>
 
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-card">
-      <div class="section-label" style="margin-bottom:0.5rem;">Let's connect</div>
-      <h2>Got a project in mind?</h2>
-      <p>I'm always open to new collaborations, internships, and design opportunities. Feel free to reach out!</p>
-      <div class="contact-links">
-        <a href="mailto:khadkasatkar099@gmail.com" class="contact-link">✉ khadkasatkar099@gmail.com</a>
-        <a href="https://www.linkedin.com/in/satkarkhadka099" target="_blank" class="contact-link">🔗 LinkedIn</a>
-        <a href="tel:+9779767473040" class="contact-link">📞 +977 9767473040</a>
-      </div>
+      <a href="mailto:khadkasatkar099@gmail.com">Email</a>
+      <a href="tel:+9779767473040">Phone</a>
+      <a href="https://www.linkedin.com/in/satkarkhadka099" target="_blank">LinkedIn</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  Crafted with care by <span>Satkar Khadka</span> · Khumaltar, Lalitpur, Nepal
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Satkar Khadka
+  </footer>
 
 </body>
+
 </html>
